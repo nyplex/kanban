@@ -1,0 +1,7 @@
+.tasksHeader {
+    @apply flex flex-row items-center mb-[24px]
+}
+
+.tasksHeader div {
+    @apply w-[15px] h-[15px] mr-[12px] rounded-full
+}

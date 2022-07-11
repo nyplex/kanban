@@ -1,13 +1,84 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+@layer utilities {
+    .heading__xl {
+        @apply font-jakarta text-[24px] font-bold leading-[30px];
+    }
+    .heading__l {
+        @apply font-jakarta text-[18px] font-bold leading-[23px];
+    }
+    .heading__m {
+        @apply font-jakarta text-[15px] font-bold leading-[19px];
+    }
+    .heading__s {
+        @apply font-jakarta text-[12px] font-bold leading-[15px] tracking-[2.4px];
+    }
+    .body__l {
+        @apply font-jakarta text-[13px] font-medium leading-[23px];
+    }
+    .body__m {
+        @apply font-jakarta text-[12px] font-bold leading-[15px];
+    }
+
+    .btn-primary__l {
+        @apply rounded-[24px] bg-mainPurple hover:bg-mainPurpleHover py-[15px] text-white heading__m;
+    }
+    .btn-primary__s {
+        @apply rounded-[24px] bg-mainPurple hover:bg-mainPurpleHover py-[9px] text-white body__m;
+    }
+    .btn-secondary {
+        @apply rounded-[20px] bg-[#635FC7] dark:bg-white hover:bg-[#635FC7] bg-opacity-[10%] hover:bg-opacity-[25%] py-[9px] text-mainPurple body__m;
+    }
+    .btn-destructive {
+        @apply rounded-[20px] bg-red hover:bg-redHover py-[9px] text-white body__m;
+    }
+
+    .checkbox__iddle {
+        @apply inline-flex items-center bg-lightGrey dark:bg-veryDarkGrey py-[12px] rounded-[4px] min-w-[250px] pl-[12px] cursor-pointer hover:bg-mainPurple hover:bg-opacity-[25%];
+    }
+    .checkbox__iddle > input {
+        @apply w-6 h-6 rounded-[2px] accent-mainPurple;
+    }
+    .checkbox__iddle > span {
+        @apply ml-2 body__m text-black dark:text-white select-none;
+    }
+
+    .text-field__idle {
+        @apply relative;
+    }
+    .text-field__idle > label {
+        @apply block mb-[8px] body__m text-mediumGrey dark:text-white;
+    }
+    .text-field__idle > input {
+        @apply bg-white border-2 border-mediumGrey border-opacity-[25%] text-black rounded-[4px] block w-full py-[9px] px-[16px] dark:bg-darkGrey dark:border-gray-600 dark:placeholder-gray-400 dark:text-white body__l focus-visible:outline-none;
+    }
+    .text-field__idle > textArea {
+        @apply bg-white border-2 border-mediumGrey border-opacity-[25%] text-black rounded-[4px] block w-full py-[9px] px-[16px] dark:bg-darkGrey dark:border-gray-600 dark:placeholder-gray-400 dark:text-white body__l focus-visible:outline-none resize-none h-[90px] overflow-auto max-h-[112px];
+    }
+    .text-field__idle > input.invalid {
+        @apply border-red;
+    }
+    .text-field__idle > textArea.invalid {
+        @apply border-red;
+    }
+    .text-field__idle > span.invalid {
+        @apply text-red body__l absolute top-[50%] right-[16px];
+    }
+
+    .dropwdown-menu__idle > label {
+        @apply block mb-[8px] body__m text-mediumGrey dark:text-white;
+    }
+    .dropwdown-menu__idle > select {
+        @apply bg-white border-2 border-mediumGrey border-opacity-[25%] text-black body__l placeholder:bg-blue-600 rounded-[4px] focus:border-mainPurple block w-full py-[9px] px-[16px] dark:bg-transparent dark:border-gray-600 dark:text-white;
+    }
+    .dropwdown-menu__idle > select.invalid {
+        @apply border-red;
+    }
+    .dropwdown-menu__idle > select > option {
+        @apply text-mediumGrey dark:bg-veryDarkGrey py-2;
+    }
 }

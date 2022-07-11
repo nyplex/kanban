@@ -1,0 +1,27 @@
+.navbar {
+    @apply bg-white dark:bg-darkGrey flex flex-row items-center
+}
+
+.logoContainer {
+    @apply flex flex-row min-w-[300px] pl-[34px] py-[18px] border-r-2 border-linesLight dark:border-linesDark
+}
+
+.logoContainer h1 {
+    @apply text-black dark:text-white font-jakarta text-[33px] font-extrabold ml-[15px] select-none
+}
+
+.navbarHeader {
+    @apply bg-transparent pl-[24px] w-full flex flex-row justify-between items-center
+}
+
+.heading h1{
+    @apply text-black dark:text-white heading__xl
+}
+
+.btns {
+    @apply pr-[33px] flex flex-row items-center
+}
+
+.btn {
+    @apply max-w-[164px] px-[24px] mr-[24px]
+}

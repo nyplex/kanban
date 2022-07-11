@@ -1,0 +1,8 @@
+.backdrop {
+    @apply fixed top-0 left-0 w-full h-[1000vh] z-20 bg-black opacity-80
+}
+
+.modal {
+    @apply fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[40%] overflow-auto z-30 shadow-md rounded bg-white p-4
+}
+  

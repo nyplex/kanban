@@ -1,0 +1,23 @@
+.sideBar {
+    @apply bg-white dark:bg-darkGrey h-[calc(100vh-85.5px)] max-w-[300px] min-w-[300px] border-r-2 border-linesLight dark:border-linesDark pt-[15px]
+}
+
+.sideBar h3 {
+    @apply text-mediumGrey ml-[32px] mb-[19px]
+}
+
+.boardItemsContainer {
+    @apply flex flex-col gap-2
+}
+
+.boardItemsContainer span {
+    @apply heading__m ml-[16px]
+}
+
+.item {
+    @apply flex flex-row items-center max-w-[276px] py-[15px] pl-[32px] text-mediumGrey hover:text-mainPurple hover:bg-mainPurple dark:hover:bg-white hover:bg-opacity-[10%] rounded-tr-[100px] rounded-br-[100px] cursor-pointer
+}
+
+.active {
+    @apply bg-mainPurple text-white hover:bg-opacity-[100%] hover:text-white dark:hover:bg-mainPurple
+}

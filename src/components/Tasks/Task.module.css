@@ -1,0 +1,11 @@
+.taskCard {
+    @apply px-[16px] py-[20px] rounded-[8px] bg-white dark:bg-darkGrey shadow-[0_4px_6px_0_rgba(54,78,126,0.3)] dark:shadow-[0_4px_6px_0_rgba(100,100,255,0.1)] cursor-pointer mb-[20px] min-w-[280px] max-w-[280px]
+}
+
+.taskCard h4 {
+    @apply heading__m text-black dark:text-white
+}
+
+.taskCard span {
+    @apply body__m text-mediumGrey mt-[8px]
+}
