@@ -3,6 +3,6 @@
 }
 
 .modal {
-    @apply fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[40%] overflow-auto z-30 shadow-md rounded bg-white p-4
+    @apply fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white dark:bg-darkGrey p-[32px] w-full max-w-[480px] z-50 rounded-[6px] max-h-[90vh] overflow-auto
 }
   

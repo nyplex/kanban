@@ -3,11 +3,15 @@ import logo from "./logo.svg";
 import Button from "../UI/Interactive/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import NewTask from "../Tasks/NewTask/NewTask";
+import Options from "./Options";
+import TasksContext from "../../context/tasks-context";
 
 const Header = (props) => {
     const [newTaskIsShown, setNewTaskIsShown] = useState(false);
+    const [optionsIsShown, setOptionsIsShown] = useState(false);
+    const tasksContext = useContext(TasksContext)
 
     return (
         <Fragment>
@@ -19,7 +23,7 @@ const Header = (props) => {
                     </div>
                     <div className={classes.navbarHeader}>
                         <div className={classes.heading}>
-                            <h1>Board Title</h1>
+                            <h1>{tasksContext.currentBoard.boardTitle}</h1>
                         </div>
                         <div className={classes.btns}>
                             <Button
@@ -29,9 +33,13 @@ const Header = (props) => {
                             >
                                 +Add New Task
                             </Button>
-                            <button>
+                            <button
+                                onClick={() =>
+                                    setOptionsIsShown((prevState) => !prevState)
+                                }
+                                className="text-mediumGrey dark:text-white z-50"
+                            >
                                 <FontAwesomeIcon
-                                    color="#ffffff"
                                     size="2x"
                                     icon={faEllipsisVertical}
                                 />
@@ -40,7 +48,12 @@ const Header = (props) => {
                     </div>
                 </nav>
             </div>
-            {newTaskIsShown && <NewTask onClose={() => setNewTaskIsShown(false)}/>}
+            {newTaskIsShown && (
+                <NewTask onClose={() => setNewTaskIsShown(false)} />
+            )}
+            {optionsIsShown && (
+                <Options onClose={() => setOptionsIsShown(false)} />
+            )}
         </Fragment>
     );
 };
