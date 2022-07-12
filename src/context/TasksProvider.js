@@ -6,7 +6,6 @@ import tasksReducer from "./tasks-reducer";
 
 const TasksProvider = (props) => {
     const [tasksState, dispatchTasks] = useReducer(tasksReducer, {
-        tasks: defaultTaskState,
         board: defaultTaskState.boards[0],
         boards: defaultTaskState.boards,
     });
@@ -22,14 +21,18 @@ const TasksProvider = (props) => {
     const editBoard = (boardId, boardTitle) => {
         dispatchTasks({ type: "EDIT_BOARD", payload: { boardId, boardTitle } });
     }
+    const addTask = (task, boardId) => {
+        dispatchTasks({ type: "ADD_TASK", payload: {task, boardId} });
+        
+    }
     const tasksContext = {
-        tasks: tasksState.board.tasks,
         boards: tasksState.boards,
         currentBoard: tasksState.board,
         changeBoard: changeBoard,
         addNewBoard: addNewBoard,
         deleteBoard: deleteBoard,
         editBoard: editBoard,
+        addTask: addTask
     };
 
     return (

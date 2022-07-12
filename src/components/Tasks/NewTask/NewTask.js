@@ -1,14 +1,20 @@
-import React from 'react'
-import Button from '../../UI/Interactive/Button'
-import Modal from '../../UI/Modal'
+import React from "react";
+import SubTasksProvider from "../../../context/SubTasksProvider";
+import Modal from "../../UI/Modal";
+import classes from "./NewTask.module.css";
+import NewTaskForm from "./NewTaskForm";
 
 const NewTask = (props) => {
-  return (
-    <Modal onClose={props.onClose}>
-        <h1>ADD NEW TASK</h1>
-        <Button classes='btn-primary__l' onClick={props.onClose}>CLOSE</Button>
-    </Modal>
-  )
-}
+    return (
+        <SubTasksProvider>
+            <Modal onClose={props.onClose}>
+                <div className={classes["boardModal__header"]}>
+                    <h2>Add New Task</h2>
+                </div>
+                <NewTaskForm onClose={props.onClose} />
+            </Modal>
+        </SubTasksProvider>
+    );
+};
 
-export default NewTask
+export default NewTask;

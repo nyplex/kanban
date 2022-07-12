@@ -5,13 +5,14 @@ import TasksColumn from "./TasksColumn";
 
 const Tasks = (props) => {
     const tasksContext = useContext(TasksContext);
-    const taskTodo = tasksContext.tasks.filter(
+    
+    const taskTodo = tasksContext.currentBoard.tasks.filter(
         (task) => task.status === "todo"
     );
-    const taskDoing = tasksContext.tasks.filter(
+    const taskDoing = tasksContext.currentBoard.tasks.filter(
         (task) => task.status === "doing"
     );
-    const taskDone = tasksContext.tasks.filter(
+    const taskDone = tasksContext.currentBoard.tasks.filter(
         (task) => task.status === "done"
     );
 

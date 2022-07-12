@@ -38,10 +38,10 @@
     }
 
     .checkbox__iddle {
-        @apply inline-flex items-center bg-lightGrey dark:bg-veryDarkGrey py-[12px] rounded-[4px] min-w-[250px] pl-[12px] cursor-pointer hover:bg-mainPurple hover:bg-opacity-[25%];
+        @apply inline-flex items-center bg-lightGrey dark:bg-veryDarkGrey py-[12px] rounded-[4px] min-w-[250px] pl-[12px] cursor-pointer hover:bg-mainPurple hover:bg-opacity-[25%] max-w-full;
     }
     .checkbox__iddle > input {
-        @apply w-6 h-6 rounded-[2px] accent-mainPurple;
+        @apply w-6 h-6 rounded-[2px] accent-mainPurple bg-green-500 text-red;
     }
     .checkbox__iddle > span {
         @apply ml-2 body__m text-black dark:text-white select-none;
@@ -73,10 +73,10 @@
         @apply block mb-[8px] body__m text-mediumGrey dark:text-white;
     }
     .dropwdown-menu__idle > select {
-        @apply bg-white border-2 border-mediumGrey border-opacity-[25%] text-black body__l placeholder:bg-blue-600 rounded-[4px] focus:border-mainPurple block w-full py-[9px] px-[16px] dark:bg-transparent dark:border-gray-600 dark:text-white;
+        @apply bg-white border-2 border-mediumGrey border-opacity-[25%] text-black body__l placeholder:bg-blue-600 rounded-[4px] focus:border-mainPurple block w-full py-[9px] px-[16px] dark:bg-transparent dark:border-gray-600 dark:text-white ring-0 cursor-pointer;
     }
     .dropwdown-menu__idle > select.invalid {
-        @apply border-red;
+        @apply border-red focus-visible:outline-none;
     }
     .dropwdown-menu__idle > select > option {
         @apply text-mediumGrey dark:bg-veryDarkGrey py-2;

@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import TasksContext from "../../../context/tasks-context";
 import Button from "../../UI/Interactive/Button";
 import Modal from "../../UI/Modal";
 import styles from "./NewBoard.module.css";
 
 const NewBoard = (props) => {
-	const [boardName, setBoardName] = React.useState("");
+	const [boardName, setBoardName] = useState("");
+    const [isInvalid, setIsInvalid] = useState(null);
 	const tasksContext = React.useContext(TasksContext)
+
+    const onChangeNameHandler = (event) => {
+        if (event.target.value.trim().length === 0) {
+            setIsInvalid(true);
+        } else {
+            setIsInvalid(null);
+        }
+        setBoardName(event.target.value);
+    };
+
   	const addNewBoardHandler = (event) => {
 		event.preventDefault();
+        if (boardName.trim().length === 0) {
+            setIsInvalid(true);
+            return;
+        }
 		tasksContext.addNewBoard(boardName);
 		props.onClose()
 	}
@@ -26,12 +41,12 @@ const NewBoard = (props) => {
                             type="text"
                             placeholder="e.g. Web Design"
 							value={boardName}
-							onChange={(e) => setBoardName(e.target.value)}
-                            // className={`${isInvalid && "invalid"}`}
+							onChange={onChangeNameHandler}
+                            className={`${isInvalid && "invalid"}`}
                         />
-                        {/* {isInvalid && (
+                        {isInvalid && (
                             <span className="invalid">Can't be empty</span>
-                        )} */}
+                        )}
                     </div>
                     <Button
                         type={"submit"}

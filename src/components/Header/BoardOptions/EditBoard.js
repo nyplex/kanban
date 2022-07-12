@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TasksContext from "../../../context/tasks-context";
 import Button from "../../UI/Interactive/Button";
 import Modal from "../../UI/Modal";
@@ -6,12 +6,25 @@ import styles from "../../SideBar/NewBoard/NewBoard.module.css";
 
 const EditBoard = (props) => {
 	const tasksContext = React.useContext(TasksContext)
-    const [boardName, setBoardName] = React.useState(tasksContext.currentBoard.boardTitle);
+    const [isInvalid, setIsInvalid] = useState(null);
+    const [boardName, setBoardName] = useState(tasksContext.currentBoard.boardTitle);
   	const addNewBoardHandler = (event) => {
 		event.preventDefault();
+        if (boardName.trim().length === 0) {
+            setIsInvalid(true);
+            return;
+        }
         tasksContext.editBoard(tasksContext.currentBoard.boardId, boardName);
 		props.onClose()
 	}
+    const onChangeNameHandler = (event) => {
+        if (event.target.value.trim().length === 0) {
+            setIsInvalid(true);
+        } else {
+            setIsInvalid(null);
+        }
+        setBoardName(event.target.value);
+    };
     return (
         <Modal onClose={props.onClose}>
             <div className={styles["boardModal__header"]}>
@@ -26,12 +39,12 @@ const EditBoard = (props) => {
                             type="text"
                             placeholder="e.g. Web Design"
 							value={boardName}
-							onChange={(e) => setBoardName(e.target.value)}
-                            // className={`${isInvalid && "invalid"}`}
+							onChange={onChangeNameHandler}
+                            className={`${isInvalid && "invalid"}`}
                         />
-                        {/* {isInvalid && (
+                        {isInvalid && (
                             <span className="invalid">Can't be empty</span>
-                        )} */}
+                        )}
                     </div>
                     <Button
                         type={"submit"}

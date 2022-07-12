@@ -3,7 +3,6 @@ const tasksReducer = (state, action) => {
     switch (action.type) {
         case "CHANGE_BOARD":
             return {
-                tasks: state,
                 board: state.boards.find(
                     (board) => board.boardId === action.payload
                 ),
@@ -22,7 +21,6 @@ const tasksReducer = (state, action) => {
                 ],
             };
             return {
-                tasks: updatedBoards,
                 board: updatedBoards.boards[updatedBoards.boards.length - 1],
                 boards: updatedBoards.boards,
             };
@@ -35,7 +33,6 @@ const tasksReducer = (state, action) => {
                 boards: NewBoards,
             };
             return {
-                tasks: updatedBoards,
                 board: updatedBoards.boards[0],
                 boards: updatedBoards.boards,
             };
@@ -50,16 +47,33 @@ const tasksReducer = (state, action) => {
                         };
                     }
                     return board;
-                })
-            }
+                }),
+            };
             return {
-                tasks: updatedBoards,
                 board: updatedBoards.boards.find(
                     (board) => board.boardId === action.payload.boardId
                 ),
-                boards: updatedBoards.boards
-            }
-
+                boards: updatedBoards.boards,
+            };
+        case "ADD_TASK":
+            updatedBoards = {
+                ...state,
+                boards: state.boards.map((board) => {
+                    if (board.boardId === action.payload.boardId) {
+                        return {
+                            ...board,
+                            tasks: [...board.tasks, action.payload.task],
+                        };
+                    }
+                    return board;
+                }),
+            };
+            return {
+                board: updatedBoards.boards.find(
+                    (board) => board.boardId === action.payload.boardId
+                ),
+                boards: updatedBoards.boards,
+            };
         default:
             return state;
     }

@@ -1,0 +1,29 @@
+.boardModal__header {
+    @apply text-black dark:text-white flex flex-row items-center gap-2
+}
+.boardModal__header h2 {
+    @apply heading__l
+}
+.boardModal__content p {
+    @apply body__l text-mediumGrey mt-[24px] 
+}
+.boardModal__content h3 {
+    @apply body__m text-mediumGrey mt-[24px] mb-[16px]
+}
+.subtasks_container {
+    @apply flex flex-col gap-2
+}
+.boardModal__primaryBtn {
+    @apply btn-primary__s w-full mt-[24px]
+}
+.boardOptions {
+    @apply absolute right-[24px] top-[80px] w-[192px] h-[94px] bg-white rounded-[8px] shadow-[0_4px_6px_0_rgba(54,78,126,0.3)] dark:shadow-[0_4px_6px_0_rgba(100,100,255,0.1)] p-[16px] dark:bg-veryDarkGrey z-30;
+}
+
+.boardOptions > button {
+    @apply body__l block;
+}
+
+.boardOptions__bg {
+    @apply block fixed z-0 left-0 top-0 w-full h-full overflow-auto;
+}
