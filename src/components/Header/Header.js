@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { Fragment, useContext, useState } from "react";
 import NewTask from "../Tasks/NewTask/NewTask";
-import Options from "./Options";
+import Options from "./BoardOptions/Options";
 import TasksContext from "../../context/tasks-context";
 
 const Header = (props) => {
@@ -37,7 +37,7 @@ const Header = (props) => {
                                 onClick={() =>
                                     setOptionsIsShown((prevState) => !prevState)
                                 }
-                                className="text-mediumGrey dark:text-white z-50"
+                                className="text-mediumGrey dark:text-white z-10"
                             >
                                 <FontAwesomeIcon
                                     size="2x"

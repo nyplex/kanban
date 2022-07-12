@@ -1,5 +1,5 @@
 .backdrop {
-    @apply fixed top-0 left-0 w-full h-[1000vh] z-20 bg-black opacity-80
+    @apply fixed top-0 left-0 w-full h-[1000vh] z-20 bg-black opacity-50
 }
 
 .modal {
