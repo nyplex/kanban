@@ -64,7 +64,7 @@ const ViewTask = (props) => {
             </div>
             <div className="dropwdown-menu__idle w-full mt-[24px]">
                 <label>Status</label>
-                <select value={taskStatus} onChange={onChangeStatusHandler}>
+                <select value={props.task.status} onChange={onChangeStatusHandler}>
                     <option value="todo">Todo</option>
                     <option value="doing">Doing</option>
                     <option value="done">Done</option>
