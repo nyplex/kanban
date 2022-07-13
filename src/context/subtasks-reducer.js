@@ -45,7 +45,7 @@ const subTaskReducer = (state, action) => {
                 }),
             };
         case "SET_SUBTASKS":
-            if (action.payload.length >= 0) {
+            if (action.payload.length <= 0) {
                 return {
                     ...state,
                     subTasks: [{

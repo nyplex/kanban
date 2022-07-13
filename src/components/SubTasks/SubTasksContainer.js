@@ -7,8 +7,14 @@ const SubTasksContainer = (props) => {
     const subTasksContext = useContext(SubTasksContext);
 
     useEffect(() => {
-        subTasksContext.setSubTasks(props.task.subtasks);
-    }, [subTasksContext, props.task.subtasks])
+        if(props.isEdit === true) {
+            if(subTasksContext.subTasks.length === 0) {
+                subTasksContext.addSubTask()
+            }else{
+                subTasksContext.setSubTasks(props.task.subtasks);
+            }   
+        }
+    }, [])
 
     const addNewSubTaskHandler = (event) => {
         event.preventDefault()
