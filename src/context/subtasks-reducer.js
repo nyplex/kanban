@@ -44,6 +44,22 @@ const subTaskReducer = (state, action) => {
                     return subTask;
                 }),
             };
+        case "SET_SUBTASKS":
+            if (action.payload.length >= 0) {
+                return {
+                    ...state,
+                    subTasks: [{
+                        id: "1",
+                        text: "",
+                    }],
+                };
+            } else {
+                return {
+                    ...state,
+                    subTasks: action.payload,
+                };
+            }
+
         default:
             return state;
     }

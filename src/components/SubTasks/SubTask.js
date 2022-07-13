@@ -3,12 +3,11 @@ import Button from "../UI/Interactive/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import classes from "./SubTasksContainer.module.css";
-import SingleInput from "../UI/Interactive/SingleInput";
 import SubTasksContext from "../../context/subtasks-context";
 
 const SubTask = (props) => {
     const [isInvalid, setIsInvalid] = useState(false);
-    const [text, setText] = useState("");
+    const [text, setText] = useState(props.text);
     const subTasksContext = useContext(SubTasksContext);
 
     const removeSubTaskHandler = (e) => {
@@ -24,6 +23,7 @@ const SubTask = (props) => {
         setText(e.target.value);
         subTasksContext.changeSubTaskText(props.id, e.target.value);
     }
+
     return (
         <div className="mt-[8px]" id={props.id}>
             <div className="text-field__idle flex flex-row gap-3">
@@ -31,7 +31,7 @@ const SubTask = (props) => {
                     type="text"
                     placeholder="e.g. Make coffee"
                     maxLength="80"
-                    value={text}
+                    value={props.isEdit ? props.text : text}
                     onChange={changeSubTaskTextHandler}
                     className={`${isInvalid && 'invalid'}`}
                 />

@@ -1,0 +1,6 @@
+.boardModal__header {
+    @apply text-black dark:text-white heading__l
+}
+.boardModal__primaryBtn {
+    @apply btn-primary__s w-full mt-[24px]
+}

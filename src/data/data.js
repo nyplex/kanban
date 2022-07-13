@@ -10,13 +10,18 @@ const defaultTaskState = {
                     subtasks: [
                         {
                             text: "Research competitor pricing and business models",
-                            status: "ongoing",
+                            status: "complete",
                             id: "1",
                         },
                         {
                             text: "Outline a business model that works for our solution",
                             status: "ongoin",
                             id: "2",
+                        },
+                        {
+                            text: "Talk to potential customers about our proposed solution and ask for fair price expectancy",
+                            status: "ongoin",
+                            id: "3",
                         },
                     ],
                     status: "todo",

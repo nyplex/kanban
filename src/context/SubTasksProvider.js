@@ -35,6 +35,12 @@ const SubTasksProvider = (props) => {
             });
         },
         changeSubTaskText: changeSubTaskText,
+        setSubTasks: (subTasks) => {
+            dispatchSubTasks({
+                type: "SET_SUBTASKS",
+                payload: subTasks,
+            });
+        }
     };
     return (
         <SubTasksContext.Provider value={subTasksContext}>

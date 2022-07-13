@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import SubTasksContext from "../../context/subtasks-context";
 import Button from "../UI/Interactive/Button";
 import SubTask from "./SubTask";
@@ -6,6 +6,9 @@ import SubTask from "./SubTask";
 const SubTasksContainer = (props) => {
     const subTasksContext = useContext(SubTasksContext);
 
+    useEffect(() => {
+        subTasksContext.setSubTasks(props.task.subtasks);
+    }, [subTasksContext, props.task.subtasks])
 
     const addNewSubTaskHandler = (event) => {
         event.preventDefault()
@@ -21,6 +24,9 @@ const SubTasksContainer = (props) => {
                 <SubTask
                     key={subTask.id}
                     id={subTask.id}
+                    text={subTask.text}
+                    subtask={subTask}
+                    isEdit={props.isEdit}
                 />
             ))}
 

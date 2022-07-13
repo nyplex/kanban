@@ -3,25 +3,25 @@ import Input from "../../UI/Interactive/Input";
 import TextArea from "../../UI/Interactive/TextArea";
 import Button from "../../UI/Interactive/Button";
 import classes from "./NewTask.module.css";
-import formReducer from "./form-reducer";
+import formReducer from "../NewTask/form-reducer";
 import SubTasksContainer from "../../SubTasks/SubTasksContainer";
 import SubTasksContext from "../../../context/subtasks-context";
 import TasksContext from "../../../context/tasks-context";
 
-const NewTaskForm = (props) => {
+const EditTaskForm = (props) => {
     const subTasksContext = useContext(SubTasksContext)
     const tasksContext = useContext(TasksContext)
     const [state, dispatchFormAction] = useReducer(formReducer, {
         input: {
-            value: "",
+            value: props.task.taskTitle,
             isInvalid: false,
         },
         textarea: {
-            value: "",
+            value: props.task.description,
             isInvalid: false,
         },
         select: {
-            value: "todo",
+            value: props.task.status,
             isInvalid: false,
         },
         subTasks: [],
@@ -71,9 +71,9 @@ const NewTaskForm = (props) => {
             description: state.textarea.value,
             subtasks: cleanSubTasks,
             status: state.select.value,
-            id: tasksContext.currentBoard.tasks[tasksContext.currentBoard.tasks.length - 1].id + 1,
+            id: props.task.id,
         }
-        tasksContext.addTask(newTask, tasksContext.currentBoard.boardId);
+        tasksContext.editTask(props.task.id, tasksContext.currentBoard.boardId, newTask)
         props.onClose()
     }
 
@@ -110,7 +110,7 @@ const NewTaskForm = (props) => {
                     />
                 </div>
                 <div>
-                    <SubTasksContainer/>
+                    <SubTasksContainer isEdit={true} task={props.task}/>
                 </div>
                 <div className="dropwdown-menu__idle w-full mt-[24px]">
                     <label>Status</label>
@@ -135,11 +135,11 @@ const NewTaskForm = (props) => {
                     type={"submit"}
                     classes={classes["boardModal__primaryBtn"]}
                 >
-                    Create Task
+                    Edit Task
                 </Button>
             </div>
         </form>
     );
 };
 
-export default NewTaskForm;
+export default EditTaskForm;

@@ -18,9 +18,9 @@ const Tasks = (props) => {
 
     return (
         <div className={classes.tasksContainer}>
-            <TasksColumn tasks={taskTodo} value="TODO" />
-            <TasksColumn tasks={taskDoing} value="DOING" />
-            <TasksColumn tasks={taskDone} value="DONE" />
+            <TasksColumn tasks={taskTodo} value="TODO" color="bg-[#49C4E5]"/>
+            <TasksColumn tasks={taskDoing} value="DOING" color="bg-[#8471F2]"/>
+            <TasksColumn tasks={taskDone} value="DONE" color="bg-[#67E2AE]"/>
         </div>
     );
 };

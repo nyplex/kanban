@@ -77,7 +77,6 @@ const formReducer = (state, action) => {
                 }
             }
         case "ADD_SUBTASK":
-            console.log(action.payload.subTasks);
             return {
                 ...state,
                 subTasks: action.payload.subTasks,

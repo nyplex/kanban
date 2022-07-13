@@ -1,48 +1,87 @@
 import classes from "./TasksColumn.module.css";
 import Task from "./Task";
-import { Fragment, useState } from "react";
+import {
+    createContext,
+    Fragment,
+    useEffect,
+    useReducer,
+    useContext,
+    useState,
+} from "react";
 import ViewTask from "./ViewTask/ViewTask";
-
+import DeleteTask from "./ViewTask/DeleteTask";
+import taskReducer from "./task-reducer";
+import EditTask from "./ViewTask/EditTask";
+import TasksContext from "../../context/tasks-context";
+export const TaskContext = createContext();
 
 const TasksColumn = (props) => {
-    const [isViewTaskOpen, setIsViewTaskOpen] = useState(false);
-    const [viewTask, setViewTask] = useState(null);
+    const tasksContext = useContext(TasksContext);
+    const [CurentTask ,setTask] = useState(tasksContext.currentBoard.tasks[0])
+    const [taskState, dispatchTaskAction] = useReducer(taskReducer, {
+        viewTask: null,
+        taskModal: false,
+        deleteTaskModal: false,
+        editTaskModal: false,
+    });
 
-    let color = "bg-[#49C4E5]";
-    if (props.value === "DONE") {
-        color = "bg-[#67E2AE]";
-    } else if (props.value === "DOING") {
-        color = "bg-[#8471F2]";
-    }
+    useEffect(() => {
+        dispatchTaskAction({
+            type: "EDIT_TASK",
+            payload: tasksContext.currentBoard.tasks.find(
+                (task) => task.id === CurentTask.id
+            ),
+        });
+    }, [tasksContext, CurentTask.id]);
+
     const openViewTaskHandler = (task) => {
-        setViewTask(task);
-        setIsViewTaskOpen(true);
+        dispatchTaskAction({ type: "OPEN_VIEW_TASK", payload: task });
+        setTask(task)
     };
+
     return (
         <Fragment>
-            <div className="max-w-[280px]">
-                <div className={classes.tasksHeader}>
-                    <div className={color}></div>
-                    <span className="heading__s text-mediumGrey">
-                        {props.value}
-                    </span>
+            <TaskContext.Provider value={dispatchTaskAction}>
+                <div className="max-w-[300px] min-w-[300px]">
+                    <div className={classes.tasksHeader}>
+                        <div className={props.color}></div>
+                        <span className="heading__s text-mediumGrey">
+                            {props.value}
+                        </span>
+                    </div>
+                    {props.tasks.length <= 0 ? (
+                        <div className="w-full h-[75%] relative">
+                            <h1 className="heading__m text-mediumGrey absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full text-left">
+                                THIS COLUMN IS EMPTY.
+                            </h1>
+                        </div>
+                    ) : (
+                        props.tasks.map((task) => (
+                            <Task
+                                task={task}
+                                key={task.id}
+                                onClick={() => {
+                                    openViewTaskHandler(task);
+                                }}
+                            />
+                        ))
+                    )}
                 </div>
-                {props.tasks.map((task) => (
-                    <Task
-                        task={task}
-                        key={task.id}
-                        onClick={() => {
-                            openViewTaskHandler(task);
+                {taskState.taskModal && (
+                    <ViewTask
+                        task={taskState.viewTask}
+                        onClose={() => {
+                            dispatchTaskAction({ type: "CLOSE_VIEW_TASK" });
                         }}
                     />
-                ))}
-            </div>
-            {isViewTaskOpen && (
-                <ViewTask
-                    task={viewTask}
-                    onClose={() => setIsViewTaskOpen(false)}
-                />
-            )}
+                )}
+                {taskState.deleteTaskModal && (
+                    <DeleteTask task={taskState.viewTask} />
+                )}
+                {taskState.editTaskModal && (
+                    <EditTask task={taskState.viewTask} />
+                )}
+            </TaskContext.Provider>
         </Fragment>
     );
 };
