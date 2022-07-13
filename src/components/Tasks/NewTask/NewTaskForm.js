@@ -65,13 +65,19 @@ const NewTaskForm = (props) => {
             });
             return;
         }
+        let taskId;
+        if(tasksContext.currentBoard.tasks.length <= 0) {
+            taskId = 1;
+        }else{
+            taskId = tasksContext.currentBoard.tasks[tasksContext.currentBoard.tasks.length - 1].id + 1;
+        }
         const cleanSubTasks = subTasksContext.subTasks.filter(subTask => subTask.text.trim().length > 0);
         const newTask = {
             taskTitle: state.input.value,
             description: state.textarea.value,
             subtasks: cleanSubTasks,
             status: state.select.value,
-            id: tasksContext.currentBoard.tasks[tasksContext.currentBoard.tasks.length - 1].id + 1,
+            id: taskId,
         }
         tasksContext.addTask(newTask, tasksContext.currentBoard.boardId);
         props.onClose()

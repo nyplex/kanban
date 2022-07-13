@@ -16,7 +16,7 @@ const tasksReducer = (state, action) => {
                     {
                         boardTitle: action.playload,
                         boardId: state.boards.length + 1,
-                        tasks: [{}],
+                        tasks: [],
                     },
                 ],
             };
@@ -60,10 +60,17 @@ const tasksReducer = (state, action) => {
                 ...state,
                 boards: state.boards.map((board) => {
                     if (board.boardId === action.payload.boardId) {
-                        return {
-                            ...board,
-                            tasks: [...board.tasks, action.payload.task],
-                        };
+                        if(board.tasks.length === 0) {
+                            return {
+                                ...board,
+                                tasks: [action.payload.task],
+                            };
+                        }else{
+                            return {
+                                ...board,
+                                tasks: [...board.tasks, action.payload.task],
+                            };
+                        }
                     }
                     return board;
                 }),
